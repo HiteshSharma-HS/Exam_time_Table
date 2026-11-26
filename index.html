@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exam Timetable Generator | Graph Coloring</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1>Exam Timetable Generator</h1>
+    <p>Graph Coloring + Backtracking: no two subjects with common students share a slot.</p>
+  </div>
+  <button id="btnGen" class="primary">Generate timetable</button>
+</header>
+
+<section class="stats">
+  <div class="stat"><b id="sSub">0</b><span>Subjects</span></div>
+  <div class="stat"><b id="sEdge">0</b><span>Conflicts</span></div>
+  <div class="stat hero"><b id="sSlot">-</b><span>Minimum slots</span></div>
+  <div class="stat"><b id="sBt">-</b><span>Backtracks</span></div>
+  <div class="stat"><b id="sTime">-</b><span>Time (ms)</span></div>
+  <div class="stat"><b id="sValid">-</b><span>Validation</span></div>
+</section>
+
+<main class="layout">
+  <aside class="col">
+    <div class="card">
+      <h2>Subjects</h2>
+      <div class="row"><input id="subName" placeholder="e.g. Data Structures"><button id="btnSub">Add</button></div>
+      <div id="subList" class="chips"></div>
+    </div>
+    <div class="card">
+      <h2>Conflicts (common students)</h2>
+      <div class="row"><select id="cA"></select><select id="cB"></select><button id="btnEdge">Add</button></div>
+      <div id="edgeList" class="chips"></div>
+    </div>
+    <div class="card">
+      <h2>Schedule settings</h2>
+      <label>Start date <input type="date" id="startDate"></label>
+      <label>Slots per day
+        <select id="perDay"><option>1</option><option selected>2</option><option>3</option></select>
+      </label>
+      <div class="row wrap">
+        <button id="btnSample">Load sample</button>
+        <button id="btnRandom">Random data</button>
+        <button id="btnClear" class="danger">Clear all</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="col wide">
+    <div class="card">
+      <h2>Conflict graph</h2>
+      <svg id="graph" viewBox="0 0 620 380"></svg>
+      <div id="legend" class="legend"></div>
+    </div>
+    <div class="card">
+      <div class="row between"><h2>Timetable</h2><button id="btnCsv">Export CSV</button></div>
+      <div class="scroll"><table id="tt"></table></div>
+    </div>
+    <div class="card">
+      <h2>Search log</h2>
+      <ul id="log" class="log"></ul>
+    </div>
+  </div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
